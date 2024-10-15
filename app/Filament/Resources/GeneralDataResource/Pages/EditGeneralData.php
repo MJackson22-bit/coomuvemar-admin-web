@@ -35,6 +35,23 @@ class EditGeneralData extends EditRecord
         return $record;
     }
 
+    /**
+     * @throws Exception
+     */
+    private function handleDeleteRecord(Model $record): bool
+    {
+        $url = BaseURL::$BASE_URL . "general-data/destroy/" . $record->id;
+        $response = Http::delete($url)->json();
+        if ($response['status'] === false) {
+            throw new Exception("Failed to delete record: " . $response['message']);
+        }
+        $this->redirect(
+            url: $this->previousUrl ?? $this->getResource()::getUrl('index'),
+        );
+        return true;
+    }
+
+
     protected function getSavedNotificationTitle(): ?string
     {
         return 'Registro actualizado';
@@ -44,7 +61,14 @@ class EditGeneralData extends EditRecord
     {
         return [
             Actions\DeleteAction::make()
-            ->label('Eliminar'),
+                ->label('Eliminar')
+                ->modalHeading('Eliminar ' . $this->record->nombre_productor)
+                ->modalCancelActionLabel('Cancelar')
+                ->modalSubmitActionLabel('Eliminar')
+                ->modalDescription('¿Seguro que desea eliminar el registro?')
+                ->action(function (Model $record) {
+                    return $this->handleDeleteRecord($record);
+                }),
         ];
     }
 
