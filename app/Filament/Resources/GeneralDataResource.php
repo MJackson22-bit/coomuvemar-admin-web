@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\GeneralDataResource\Pages;
-use App\Filament\Resources\GeneralDataResource\RelationManagers;
 use App\Models\GeneralData;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -88,8 +87,9 @@ class GeneralDataResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                    Tables\Actions\DeleteBulkAction::make()
+                        ->label('Eliminar seleccionados'),
+                ])->label('Acciones masivas'),
             ]);
     }
 

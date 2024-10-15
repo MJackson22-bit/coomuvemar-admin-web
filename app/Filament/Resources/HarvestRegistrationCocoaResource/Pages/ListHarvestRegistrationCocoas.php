@@ -10,6 +10,8 @@ class ListHarvestRegistrationCocoas extends ListRecords
 {
     protected static string $resource = HarvestRegistrationCocoaResource::class;
 
+    protected static ?string $title = 'Registro de Cosechas de Cacao';
+
     protected function getHeaderActions(): array
     {
         return [
