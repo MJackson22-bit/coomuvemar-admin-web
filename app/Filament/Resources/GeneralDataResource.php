@@ -25,21 +25,60 @@ class GeneralDataResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('nombre_productor'),
-                TextInput::make('codigo'),
-                TextInput::make('numero_cedula'),
-                TextInput::make('nombre_finca'),
-                TextInput::make('altura_nivel_mar'),
-                TextInput::make('ciclo_productivo'),
-                TextInput::make('coordenadas_area_cacao'),
-                TextInput::make('area_total_finca'),
-                TextInput::make('departamento'),
-                TextInput::make('municipio'),
-                TextInput::make('comunidad'),
-                TextInput::make('area_cacao'),
-                TextInput::make('produccion'),
-                TextInput::make('desarrollo'),
+                TextInput::make('nombre_productor')
+                    ->label('Nombre del productor')
+                    ->required(),
+
+                TextInput::make('codigo')
+                    ->label('Codigo')
+                    ->required(),
+
+                TextInput::make('numero_cedula')
+                    ->label('Cédula')
+                    ->required(),
+
+                TextInput::make('nombre_finca')
+                    ->label('Nombre de la finca')
+                    ->required(),
+
+                TextInput::make('altura_nivel_mar')
+                    ->label('Altura del nivel del mar')
+                    ->required(),
+
+                TextInput::make('ciclo_productivo')
+                    ->required(),
+
+                TextInput::make('coordenadas_area_cacao')
+                    ->label('Coordenadas del área de cacao')
+                    ->required(),
+
+                TextInput::make('area_total_finca')
+                    ->label('Área total de la finca')
+                    ->required(),
+
+                TextInput::make('departamento')
+                    ->required(),
+
+                TextInput::make('municipio')
+                    ->required(),
+
+                TextInput::make('comunidad')
+                    ->required(),
+
+                TextInput::make('area_cacao')
+                    ->label('Área del cacao')
+                    ->required(),
+
+                TextInput::make('produccion')
+                    ->label('Producción')
+                    ->required(),
+
+                TextInput::make('desarrollo')
+                    ->required(),
+
                 TextInput::make('variedades_cacao')
+                    ->label('Variedades de Cacao')
+                    ->required(),
             ]);
     }
 
@@ -83,7 +122,7 @@ class GeneralDataResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make()
-                ->label('Editar'),
+                    ->label('Editar'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

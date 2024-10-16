@@ -4,6 +4,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\HarvestRegistrationCocoaResource\Pages;
 use App\Models\HarvestRegistrationCocoa;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -24,7 +26,22 @@ class HarvestRegistrationCocoaResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('cantidad_mazorcas')
+                    ->label('Cantidad de mazorcas')
+                    ->required(),
+
+                TextInput::make('qq_baba_cacao')
+                    ->label('QQ de cacao baba')
+                    ->required(),
+
+                TextInput::make('precio_qq')
+                    ->label('Precio QQ')
+                    ->required(),
+
+                DatePicker::make('fecha')
+                    ->displayFormat('y-m-d')
+                    ->format('y-m-d')
+                    ->required(),
             ]);
     }
 

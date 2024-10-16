@@ -15,12 +15,14 @@ class EditHarvestRegistrationCocoa extends EditRecord
 {
     protected static string $resource = HarvestRegistrationCocoaResource::class;
 
+    protected static ?string $title = 'Registro de Cosechas de Cacao';
+
     /**
      * @throws Exception
      */
     protected function handleRecordUpdate(Model $record, array $data): Model
     {
-        $url = BaseURL::$BASE_URL . "general-data/update/" . $record->id;
+        $url = BaseURL::$BASE_URL . 'cocoa-harvest-registration/update/' . $record['id'];
         $response = Http::put(
             url: $url,
             data: $data
@@ -36,7 +38,7 @@ class EditHarvestRegistrationCocoa extends EditRecord
      */
     private function handleDeleteRecord(Model $record): bool
     {
-        $url = BaseURL::$BASE_URL . "general-data/destroy/" . $record->id;
+        $url = BaseURL::$BASE_URL . 'cocoa-harvest-registration/destroy/' . $record['id'];
         $response = Http::delete($url)->json();
         if ($response['status'] === false) {
             throw new Exception("Failed to delete record: " . $response['message']);
