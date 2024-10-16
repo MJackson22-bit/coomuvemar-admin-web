@@ -15,6 +15,24 @@ class GeneralData extends Model
 
     use Sushi;
 
+    protected $fillable = [
+        'nombre_productor',
+        'codigo',
+        'numero_cedula',
+        'nombre_finca',
+        'altura_nivel_mar',
+        'ciclo_productivo',
+        'coordenadas_area_cacao',
+        'departamento',
+        'municipio',
+        'comunidad',
+        'area_total_finca',
+        'area_cacao',
+        'produccion',
+        'desarrollo',
+        'variedades_cacao'
+    ];
+
     public function getRows(): array
     {
         $generalData = Http::get(BaseURL::$BASE_URL . "general-data/1")->json();

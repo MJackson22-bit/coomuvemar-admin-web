@@ -12,7 +12,6 @@ class ListGeneralData extends ListRecords
 
     protected static ?string $title = 'Datos Generales';
 
-
     protected function getHeaderActions(): array
     {
         return [
