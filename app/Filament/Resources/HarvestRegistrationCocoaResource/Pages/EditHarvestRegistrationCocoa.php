@@ -15,7 +15,7 @@ class EditHarvestRegistrationCocoa extends EditRecord
 {
     protected static string $resource = HarvestRegistrationCocoaResource::class;
 
-    protected static ?string $title = 'Registro de Cosechas de Cacao';
+    protected static ?string $title = 'Editar Registro de Cosechas de Cacao';
 
     /**
      * @throws Exception

@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources\GeneralDataResource\Pages;
 
+use App\Filament\Resources\CoRecordResource;
 use App\Filament\Resources\GeneralDataResource;
+use App\Filament\Resources\RecordResource;
 use App\Models\BaseURL;
 use Exception;
 use Filament\Actions;
@@ -17,7 +19,7 @@ class EditGeneralData extends EditRecord
 {
     protected static string $resource = GeneralDataResource::class;
 
-    protected static ?string $title = 'Datos Generales';
+    protected static ?string $title = 'Editar Datos Generales';
 
     /**
      * @throws Exception
@@ -69,6 +71,14 @@ class EditGeneralData extends EditRecord
                 ->action(function (Model $record) {
                     return $this->handleDeleteRecord($record);
                 }),
+            Actions\Action::make('go_to_record')
+                ->label('Registros')
+                ->color('info')
+                ->action(function () {
+                    $this->redirect(
+                        url: GeneralDataResource::getUrl() . '/' . $this->record['id'] . '/records',
+                    );
+                })
         ];
     }
 

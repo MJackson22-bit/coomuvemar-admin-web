@@ -16,7 +16,7 @@ class CreateGeneralData extends CreateRecord
 {
     protected static string $resource = GeneralDataResource::class;
 
-    protected static ?string $title = "Datos Generales";
+    protected static ?string $title = "Crear Datos Generales";
 
     protected static bool $canCreateAnother = false;
 

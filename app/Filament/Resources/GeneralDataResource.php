@@ -145,6 +145,7 @@ class GeneralDataResource extends Resource
             'index' => Pages\ListGeneralData::route('/'),
             'create' => Pages\CreateGeneralData::route('/create'),
             'edit' => Pages\EditGeneralData::route('/{record}/edit'),
+            'records' => Pages\ViewRecords::route('/{record}/records'),
         ];
     }
 }
