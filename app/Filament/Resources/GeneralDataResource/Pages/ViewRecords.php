@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\GeneralDataResource\Pages;
 
 use App\Filament\Resources\GeneralDataResource;
-use App\Filament\Resources\GeneralDataResource\Widgets\HarvestCocoaRecordWidget;
+use App\Filament\Resources\GeneralDataResource\Widgets\RecordWidget;
 use Filament\Forms\Components\Section;
 use Filament\Resources\Pages\Page;
 use Filament\Widgets\StatsOverviewWidget;
@@ -22,48 +22,48 @@ class ViewRecords extends Page
 
     public function getHeaderWidgetsColumns(): int|string|array
     {
-        return 3;
+        return 2;
     }
 
     protected function getHeaderWidgets(): array
     {
         return [
-            HarvestCocoaRecordWidget::make(
+            RecordWidget::make(
                 properties: [
                     'title' => 'Cosechas de cacao',
                 ]
             ),
-            HarvestCocoaRecordWidget::make(
+            RecordWidget::make(
                 properties: [
                     'title' => 'Plantación',
                 ]
             ),
-            HarvestCocoaRecordWidget::make(
+            RecordWidget::make(
                 properties: [
                     'title' => 'Renovación o mejora genética',
                 ]
             ),
-            HarvestCocoaRecordWidget::make(
+            RecordWidget::make(
                 properties: [
                     'title' => 'Limpieza de equipos',
                 ]
             ),
-            HarvestCocoaRecordWidget::make(
+            RecordWidget::make(
                 properties: [
                     'title' => 'Compra de insumos y materiales',
                 ]
             ),
-            HarvestCocoaRecordWidget::make(
+            RecordWidget::make(
                 properties: [
                     'title' => 'Actividades de manejo integrado de plagas en la finca',
                 ]
             ),
-            HarvestCocoaRecordWidget::make(
+            RecordWidget::make(
                 properties: [
                     'title' => 'Monitoreo de plagas, enfermedades e insectos benéfico',
                 ]
             ),
-            HarvestCocoaRecordWidget::make(
+            RecordWidget::make(
                 properties: [
                     'title' => 'Trabajadores temporales y permanentes',
                 ]

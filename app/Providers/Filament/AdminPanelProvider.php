@@ -55,6 +55,9 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
+            ->viteTheme(
+                'resources/css/app.css'
+            )
             ->plugins([
                 ApiServicePlugin::make()
             ]);
