@@ -2,13 +2,17 @@
 
 namespace App\Filament\Resources\GeneralDataResource\Pages;
 
+use App\Filament\Resources\EquipmentCleaningResource;
 use App\Filament\Resources\GeneralDataResource;
 use App\Filament\Resources\GeneralDataResource\Widgets\RecordWidget;
-use Filament\Forms\Components\Section;
+use App\Filament\Resources\HarvestRegistrationCocoaResource;
+use App\Filament\Resources\IntegratedPestManagementActivitiesResource;
+use App\Filament\Resources\PestMonitoringRecordDiseasesBeneficialInsectsResource;
+use App\Filament\Resources\PlantationResource;
+use App\Filament\Resources\RenewalRegistrationResource;
+use App\Filament\Resources\SuppliesMaterialsPurchaseResource;
+use App\Filament\Resources\TemporaryPermanentWorkersResource;
 use Filament\Resources\Pages\Page;
-use Filament\Widgets\StatsOverviewWidget;
-use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Model;
 
 class ViewRecords extends Page
 {
@@ -31,41 +35,49 @@ class ViewRecords extends Page
             RecordWidget::make(
                 properties: [
                     'title' => 'Cosechas de cacao',
+                    'action' => HarvestRegistrationCocoaResource::getUrl()
                 ]
             ),
             RecordWidget::make(
                 properties: [
-                    'title' => 'Plantación',
+                    'title' => 'Poda de formación o mantenimiento',
+                    'action' => PlantationResource::getUrl()
                 ]
             ),
             RecordWidget::make(
                 properties: [
                     'title' => 'Renovación o mejora genética',
+                    'action' => RenewalRegistrationResource::getUrl()
                 ]
             ),
             RecordWidget::make(
                 properties: [
                     'title' => 'Limpieza de equipos',
+                    'action' => EquipmentCleaningResource::getUrl()
                 ]
             ),
             RecordWidget::make(
                 properties: [
                     'title' => 'Compra de insumos y materiales',
+                    'action' => SuppliesMaterialsPurchaseResource::getUrl()
                 ]
             ),
             RecordWidget::make(
                 properties: [
                     'title' => 'Actividades de manejo integrado de plagas en la finca',
+                    'action' => IntegratedPestManagementActivitiesResource::getUrl()
                 ]
             ),
             RecordWidget::make(
                 properties: [
                     'title' => 'Monitoreo de plagas, enfermedades e insectos benéfico',
+                    'action' => PestMonitoringRecordDiseasesBeneficialInsectsResource::getUrl()
                 ]
             ),
             RecordWidget::make(
                 properties: [
                     'title' => 'Trabajadores temporales y permanentes',
+                    'action' => TemporaryPermanentWorkersResource::getUrl()
                 ]
             )
         ];

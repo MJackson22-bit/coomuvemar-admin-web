@@ -1,5 +1,5 @@
 <x-filament-widgets::widget>
-    <x-filament::button class="w-full min-h-24" size="xs" color="gray">
+    <x-filament::link href="{{ $action }}" class="w-full min-h-24 bg-neutral-900 rounded-lg" size="xs" color="gray">
         <div class="flex flex-row items-center">
             <div>
                 <x-filament::icon
@@ -11,5 +11,5 @@
                 <h2 class="text-xl font-bold">{{ $title }}</h2>
             </div>
         </div>
-    </x-filament::button>
+    </x-filament::link>
 </x-filament-widgets::widget>

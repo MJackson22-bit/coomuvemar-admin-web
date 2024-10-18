@@ -2,20 +2,20 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PlantationResource\Pages;
-use App\Models\Plantation;
+use App\Filament\Resources\RenewalRegistrationResource\Pages;
+use App\Models\RenewalRegistration;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class PlantationResource extends Resource
+class RenewalRegistrationResource extends Resource
 {
-    protected static ?string $model = Plantation::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $model = RenewalRegistration::class;
 
     protected static bool $shouldRegisterNavigation = false;
+
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
@@ -54,9 +54,9 @@ class PlantationResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPlantations::route('/'),
-            'create' => Pages\CreatePlantation::route('/create'),
-            'edit' => Pages\EditPlantation::route('/{record}/edit'),
+            'index' => Pages\ListRenewalRegistrations::route('/'),
+            'create' => Pages\CreateRenewalRegistration::route('/create'),
+            'edit' => Pages\EditRenewalRegistration::route('/{record}/edit'),
         ];
     }
 }

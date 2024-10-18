@@ -2,20 +2,20 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PlantationResource\Pages;
-use App\Models\Plantation;
+use App\Filament\Resources\TemporaryPermanentWorkersResource\Pages;
+use App\Models\TemporaryPermanentWorkers;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class PlantationResource extends Resource
+class TemporaryPermanentWorkersResource extends Resource
 {
-    protected static ?string $model = Plantation::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $model = TemporaryPermanentWorkers::class;
 
     protected static bool $shouldRegisterNavigation = false;
+
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
@@ -54,9 +54,9 @@ class PlantationResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPlantations::route('/'),
-            'create' => Pages\CreatePlantation::route('/create'),
-            'edit' => Pages\EditPlantation::route('/{record}/edit'),
+            'index' => Pages\ListTemporaryPermanentWorkers::route('/'),
+            'create' => Pages\CreateTemporaryPermanentWorkers::route('/create'),
+            'edit' => Pages\EditTemporaryPermanentWorkers::route('/{record}/edit'),
         ];
     }
 }

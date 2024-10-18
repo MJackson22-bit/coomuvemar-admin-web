@@ -22,6 +22,8 @@ class HarvestRegistrationCocoaResource extends Resource
 
     protected static ?string $navigationLabel = 'Registro de Cosechas de Cacao';
 
+    protected static bool $shouldRegisterNavigation = false;
+
     public static function form(Form $form): Form
     {
         return $form
