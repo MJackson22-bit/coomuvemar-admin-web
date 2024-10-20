@@ -3,8 +3,11 @@
 namespace App\Filament\Resources\HarvestRegistrationCocoaResource\Pages;
 
 use App\Filament\Resources\HarvestRegistrationCocoaResource;
+use App\Models\HarvestRegistrationCocoa;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
+use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Model;
 
 class ListHarvestRegistrationCocoas extends ListRecords
 {

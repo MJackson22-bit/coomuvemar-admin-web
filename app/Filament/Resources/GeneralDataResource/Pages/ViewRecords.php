@@ -12,9 +12,7 @@ use App\Filament\Resources\PlantationResource;
 use App\Filament\Resources\RenewalRegistrationResource;
 use App\Filament\Resources\SuppliesMaterialsPurchaseResource;
 use App\Filament\Resources\TemporaryPermanentWorkersResource;
-use Filament\Panel;
 use Filament\Resources\Pages\Page;
-use Filament\Resources\Pages\PageRegistration;
 use Illuminate\Contracts\View\View;
 
 class ViewRecords extends Page
@@ -25,7 +23,7 @@ class ViewRecords extends Page
 
     protected static string $view = 'filament.resources.general-data-resource.pages.records';
 
-    public int $generalDataId;
+    private int $generalDataId;
 
     public function getHeaderWidgetsColumns(): int|string|array
     {

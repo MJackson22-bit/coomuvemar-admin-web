@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\HarvestRegistrationCocoaResource\Pages;
+use App\Models\BaseURL;
 use App\Models\HarvestRegistrationCocoa;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
@@ -11,11 +12,10 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Http;
 
 class HarvestRegistrationCocoaResource extends Resource
 {
-    protected static ?string $model = HarvestRegistrationCocoa::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $label = 'Registro de Cosechas de Cacao';
@@ -45,6 +45,13 @@ class HarvestRegistrationCocoaResource extends Resource
                     ->format('y-m-d')
                     ->required(),
             ]);
+    }
+
+    public static function getModel(): string
+    {
+        $data = request('general_data_id');
+        HarvestRegistrationCocoa::setGeneralDataId($data);
+        return parent::getModel();
     }
 
     public static function table(Table $table): Table
@@ -97,7 +104,7 @@ class HarvestRegistrationCocoaResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListHarvestRegistrationCocoas::route('/{general_data_id}'),
+            'index' => Pages\ListHarvestRegistrationCocoas::route('/'),
             'create' => Pages\CreateHarvestRegistrationCocoa::route('/create'),
             'edit' => Pages\EditHarvestRegistrationCocoa::route('/{record}/edit'),
         ];
