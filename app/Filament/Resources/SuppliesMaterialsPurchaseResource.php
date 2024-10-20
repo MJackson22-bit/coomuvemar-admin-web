@@ -54,7 +54,7 @@ class SuppliesMaterialsPurchaseResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSuppliesMaterialsPurchases::route('/'),
+            'index' => Pages\ListSuppliesMaterialsPurchases::route('/{general_data_id}'),
             'create' => Pages\CreateSuppliesMaterialsPurchase::route('/create'),
             'edit' => Pages\EditSuppliesMaterialsPurchase::route('/{record}/edit'),
         ];

@@ -14,9 +14,9 @@ class HarvestRegistrationCocoa extends Model
 
     use Sushi;
 
-    public function getRows(): array
+    public function getRows($general_data_id): array
     {
-        $response = Http::get(BaseURL::$BASE_URL . "cocoa-harvest-registration/8")->json();
+        $response = Http::get(BaseURL::$BASE_URL . "cocoa-harvest-registration/" . $general_data_id)->json();
 
         return Arr::map($response['data'], function ($item) {
             return Arr::only($item,

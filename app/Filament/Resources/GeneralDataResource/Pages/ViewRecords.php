@@ -12,7 +12,10 @@ use App\Filament\Resources\PlantationResource;
 use App\Filament\Resources\RenewalRegistrationResource;
 use App\Filament\Resources\SuppliesMaterialsPurchaseResource;
 use App\Filament\Resources\TemporaryPermanentWorkersResource;
+use Filament\Panel;
 use Filament\Resources\Pages\Page;
+use Filament\Resources\Pages\PageRegistration;
+use Illuminate\Contracts\View\View;
 
 class ViewRecords extends Page
 {
@@ -29,55 +32,93 @@ class ViewRecords extends Page
         return 2;
     }
 
+    public function render(): View
+    {
+        $this->generalDataId = request('record');
+        return parent::render();
+    }
+
     protected function getHeaderWidgets(): array
     {
         return [
             RecordWidget::make(
                 properties: [
                     'title' => 'Cosechas de cacao',
-                    'action' => HarvestRegistrationCocoaResource::getUrl()
+                    'action' => HarvestRegistrationCocoaResource::getUrl(
+                        parameters: [
+                            'general_data_id' => $this->generalDataId,
+                        ]
+                    )
                 ]
             ),
             RecordWidget::make(
                 properties: [
                     'title' => 'Poda de formación o mantenimiento',
-                    'action' => PlantationResource::getUrl()
+                    'action' => PlantationResource::getUrl(
+                        parameters: [
+                            'general_data_id' => $this->generalDataId,
+                        ]
+                    )
                 ]
             ),
             RecordWidget::make(
                 properties: [
                     'title' => 'Renovación o mejora genética',
-                    'action' => RenewalRegistrationResource::getUrl()
+                    'action' => RenewalRegistrationResource::getUrl(
+                        parameters: [
+                            'general_data_id' => $this->generalDataId,
+                        ]
+                    )
                 ]
             ),
             RecordWidget::make(
                 properties: [
                     'title' => 'Limpieza de equipos',
-                    'action' => EquipmentCleaningResource::getUrl()
+                    'action' => EquipmentCleaningResource::getUrl(
+                        parameters: [
+                            'general_data_id' => $this->generalDataId,
+                        ]
+                    )
                 ]
             ),
             RecordWidget::make(
                 properties: [
                     'title' => 'Compra de insumos y materiales',
-                    'action' => SuppliesMaterialsPurchaseResource::getUrl()
+                    'action' => SuppliesMaterialsPurchaseResource::getUrl(
+                        parameters: [
+                            'general_data_id' => $this->generalDataId,
+                        ]
+                    )
                 ]
             ),
             RecordWidget::make(
                 properties: [
                     'title' => 'Actividades de manejo integrado de plagas en la finca',
-                    'action' => IntegratedPestManagementActivitiesResource::getUrl()
+                    'action' => IntegratedPestManagementActivitiesResource::getUrl(
+                        parameters: [
+                            'general_data_id' => $this->generalDataId,
+                        ]
+                    )
                 ]
             ),
             RecordWidget::make(
                 properties: [
                     'title' => 'Monitoreo de plagas, enfermedades e insectos benéfico',
-                    'action' => PestMonitoringRecordDiseasesBeneficialInsectsResource::getUrl()
+                    'action' => PestMonitoringRecordDiseasesBeneficialInsectsResource::getUrl(
+                        parameters: [
+                            'general_data_id' => $this->generalDataId,
+                        ]
+                    )
                 ]
             ),
             RecordWidget::make(
                 properties: [
                     'title' => 'Trabajadores temporales y permanentes',
-                    'action' => TemporaryPermanentWorkersResource::getUrl()
+                    'action' => TemporaryPermanentWorkersResource::getUrl(
+                        parameters: [
+                            'general_data_id' => $this->generalDataId,
+                        ]
+                    )
                 ]
             )
         ];

@@ -97,7 +97,7 @@ class HarvestRegistrationCocoaResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListHarvestRegistrationCocoas::route('/'),
+            'index' => Pages\ListHarvestRegistrationCocoas::route('/{general_data_id}'),
             'create' => Pages\CreateHarvestRegistrationCocoa::route('/create'),
             'edit' => Pages\EditHarvestRegistrationCocoa::route('/{record}/edit'),
         ];

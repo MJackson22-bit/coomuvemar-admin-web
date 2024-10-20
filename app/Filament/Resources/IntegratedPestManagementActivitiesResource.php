@@ -54,7 +54,7 @@ class IntegratedPestManagementActivitiesResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListIntegratedPestManagementActivities::route('/'),
+            'index' => Pages\ListIntegratedPestManagementActivities::route('/{general_data_id}'),
             'create' => Pages\CreateIntegratedPestManagementActivities::route('/create'),
             'edit' => Pages\EditIntegratedPestManagementActivities::route('/{record}/edit'),
         ];

@@ -54,7 +54,7 @@ class RenewalRegistrationResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListRenewalRegistrations::route('/'),
+            'index' => Pages\ListRenewalRegistrations::route('/{general_data_id}'),
             'create' => Pages\CreateRenewalRegistration::route('/create'),
             'edit' => Pages\EditRenewalRegistration::route('/{record}/edit'),
         ];

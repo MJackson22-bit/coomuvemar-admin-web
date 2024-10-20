@@ -54,7 +54,7 @@ class TemporaryPermanentWorkersResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTemporaryPermanentWorkers::route('/'),
+            'index' => Pages\ListTemporaryPermanentWorkers::route('/{general_data_id}'),
             'create' => Pages\CreateTemporaryPermanentWorkers::route('/create'),
             'edit' => Pages\EditTemporaryPermanentWorkers::route('/{record}/edit'),
         ];

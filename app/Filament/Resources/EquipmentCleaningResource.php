@@ -54,7 +54,7 @@ class EquipmentCleaningResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListEquipmentCleanings::route('/'),
+            'index' => Pages\ListEquipmentCleanings::route('/{general_data_id}'),
             'create' => Pages\CreateEquipmentCleaning::route('/create'),
             'edit' => Pages\EditEquipmentCleaning::route('/{record}/edit'),
         ];

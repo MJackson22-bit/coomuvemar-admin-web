@@ -54,7 +54,7 @@ class PestMonitoringRecordDiseasesBeneficialInsectsResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPestMonitoringRecordDiseasesBeneficialInsects::route('/'),
+            'index' => Pages\ListPestMonitoringRecordDiseasesBeneficialInsects::route('/{general_data_id}'),
             'create' => Pages\CreatePestMonitoringRecordDiseasesBeneficialInsects::route('/create'),
             'edit' => Pages\EditPestMonitoringRecordDiseasesBeneficialInsects::route('/{record}/edit'),
         ];

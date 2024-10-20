@@ -54,7 +54,7 @@ class PlantationResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPlantations::route('/'),
+            'index' => Pages\ListPlantations::route('/{general_data_id}'),
             'create' => Pages\CreatePlantation::route('/create'),
             'edit' => Pages\EditPlantation::route('/{record}/edit'),
         ];
