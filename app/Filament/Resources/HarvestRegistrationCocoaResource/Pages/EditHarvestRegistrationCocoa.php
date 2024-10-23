@@ -4,9 +4,11 @@ namespace App\Filament\Resources\HarvestRegistrationCocoaResource\Pages;
 
 use App\Filament\Resources\HarvestRegistrationCocoaResource;
 use App\Models\BaseURL;
+use App\Models\HarvestRegistrationCocoa;
 use Exception;
 use Filament\Actions;
 use Filament\Actions\Action;
+use Filament\Actions\EditAction;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
@@ -16,6 +18,13 @@ class EditHarvestRegistrationCocoa extends EditRecord
     protected static string $resource = HarvestRegistrationCocoaResource::class;
 
     protected static ?string $title = 'Editar Registro de Cosechas de Cacao';
+
+
+    public function mount(int|string $record): void
+    {
+        HarvestRegistrationCocoa::setGeneralDataId(request('general_data_id'));
+        parent::mount($record);
+    }
 
     /**
      * @throws Exception
@@ -63,7 +72,7 @@ class EditHarvestRegistrationCocoa extends EditRecord
                 ->modalCancelActionLabel('Cancelar')
                 ->modalSubmitActionLabel('Eliminar')
                 ->modalDescription('¿Seguro que desea eliminar el registro?')
-                ->action(function (Model $record) {
+                ->action(function (Model $record): bool {
                     return $this->handleDeleteRecord($record);
                 }),
         ];

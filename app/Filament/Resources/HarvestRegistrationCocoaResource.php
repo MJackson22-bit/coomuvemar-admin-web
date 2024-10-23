@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\GeneralDataResource\Pages\Params;
 use App\Filament\Resources\HarvestRegistrationCocoaResource\Pages;
-use App\Models\BaseURL;
 use App\Models\HarvestRegistrationCocoa;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
@@ -12,7 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Database\Eloquent\Model;
 
 class HarvestRegistrationCocoaResource extends Resource
 {
@@ -47,15 +47,9 @@ class HarvestRegistrationCocoaResource extends Resource
             ]);
     }
 
-    public static function getModel(): string
-    {
-        $data = request('general_data_id');
-        HarvestRegistrationCocoa::setGeneralDataId($data);
-        return parent::getModel();
-    }
-
     public static function table(Table $table): Table
     {
+        HarvestRegistrationCocoa::setGeneralDataId(request('general_data_id'));
         return $table
             ->columns([
                 TextColumn::make('cantidad_mazorcas')
@@ -84,12 +78,21 @@ class HarvestRegistrationCocoaResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make()
-                ->label('Editar'),
+                    ->url(function (Model $record): string {
+                        return static::getUrl(
+                            'edit',
+                            [
+                                'record' => $record['id'],
+                                'general_data_id' => request('general_data_id')
+                            ]
+                        );
+                    })
+                    ->label('Editar'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make()
-                    ->label('Eliminar seleccionados'),
+                        ->label('Eliminar seleccionados'),
                 ])->label('Acciones masivas'),
             ]);
     }
@@ -106,7 +109,7 @@ class HarvestRegistrationCocoaResource extends Resource
         return [
             'index' => Pages\ListHarvestRegistrationCocoas::route('/'),
             'create' => Pages\CreateHarvestRegistrationCocoa::route('/create'),
-            'edit' => Pages\EditHarvestRegistrationCocoa::route('/{record}/edit'),
+            'edit' => Pages\EditHarvestRegistrationCocoa::route('/{record}/edit/{general_data_id}'),
         ];
     }
 }
