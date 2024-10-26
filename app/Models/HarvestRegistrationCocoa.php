@@ -18,6 +18,17 @@ class HarvestRegistrationCocoa extends Model
 
     use Sushi;
 
+    protected $fillable = [
+        'id',
+        'fecha',
+        'cantidad_mazorcas',
+        'qq_baba_cacao',
+        'precio_qq',
+        'general_data_id',
+        'created_at',
+        'updated_at',
+    ];
+
     protected static string $general_data_id;
 
     public static function setGeneralDataId($value): void

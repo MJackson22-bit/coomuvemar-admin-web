@@ -51,6 +51,16 @@ class HarvestRegistrationCocoaResource extends Resource
     {
         HarvestRegistrationCocoa::setGeneralDataId(request('general_data_id'));
         return $table
+            ->headerActions([
+                Tables\Actions\CreateAction::make()
+                    ->url(fn() => static::getUrl(
+                        'create',
+                        [
+                            'general_data_id' => request('general_data_id')
+                        ]
+                    ))
+                    ->label('Crear Registro'),
+            ])
             ->columns([
                 TextColumn::make('cantidad_mazorcas')
                     ->label('Cantidad de Mazorcas')
@@ -90,10 +100,7 @@ class HarvestRegistrationCocoaResource extends Resource
                     ->label('Editar'),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make()
-                        ->label('Eliminar seleccionados'),
-                ])->label('Acciones masivas'),
+                //
             ]);
     }
 
@@ -108,7 +115,7 @@ class HarvestRegistrationCocoaResource extends Resource
     {
         return [
             'index' => Pages\ListHarvestRegistrationCocoas::route('/'),
-            'create' => Pages\CreateHarvestRegistrationCocoa::route('/create'),
+            'create' => Pages\CreateHarvestRegistrationCocoa::route('/create/{general_data_id}'),
             'edit' => Pages\EditHarvestRegistrationCocoa::route('/{record}/edit/{general_data_id}'),
         ];
     }

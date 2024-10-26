@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\HarvestRegistrationCocoaResource\Pages;
 
 use App\Filament\Resources\HarvestRegistrationCocoaResource;
-use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
 class ListHarvestRegistrationCocoas extends ListRecords
@@ -14,9 +13,6 @@ class ListHarvestRegistrationCocoas extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        return [
-            Actions\CreateAction::make()
-            ->label('Crear Registro'),
-        ];
+        return [];
     }
 }

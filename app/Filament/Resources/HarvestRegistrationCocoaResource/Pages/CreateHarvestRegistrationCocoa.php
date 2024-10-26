@@ -5,6 +5,7 @@ namespace App\Filament\Resources\HarvestRegistrationCocoaResource\Pages;
 use App\Filament\Resources\HarvestRegistrationCocoaResource;
 use App\Models\BaseURL;
 use App\Models\GeneralData;
+use App\Models\HarvestRegistrationCocoa;
 use Exception;
 use Filament\Actions;
 use Filament\Actions\Action;
@@ -31,7 +32,9 @@ class CreateHarvestRegistrationCocoa extends CreateRecord
      */
     protected function handleRecordCreation(array $data): Model
     {
-        $url = BaseURL::$BASE_URL . 'cocoa-harvest-registration/store/8';
+        $generalDataId = explode('=', $this->previousUrl)[1];
+        $url = BaseURL::$BASE_URL . 'cocoa-harvest-registration/store/' . $generalDataId;
+        HarvestRegistrationCocoa::setGeneralDataId($generalDataId);
         $response = Http::post(
             url: $url,
             data: $data
@@ -39,7 +42,7 @@ class CreateHarvestRegistrationCocoa extends CreateRecord
         if ($response['status'] === false) {
             throw new Exception("Failed to create record: " . $response['message']);
         }
-        return new GeneralData(
+        return new HarvestRegistrationCocoa(
             attributes: $response['data']
         );
     }
