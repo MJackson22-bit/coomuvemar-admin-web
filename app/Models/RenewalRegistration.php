@@ -35,7 +35,6 @@ class RenewalRegistration extends Model
 
     public static function setGeneralDataId($value): void
     {
-        echo 'value';
         self::$general_data_id = $value;
     }
 
