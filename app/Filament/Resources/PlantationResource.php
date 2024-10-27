@@ -56,6 +56,7 @@ class PlantationResource extends Resource
     {
         Plantation::setGeneralDataId(request('general_data_id'));
         return $table
+            ->paginated(false)
             ->headerActions([
                 Tables\Actions\CreateAction::make()
                     ->url(fn() => static::getUrl(

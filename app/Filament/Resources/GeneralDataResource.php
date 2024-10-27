@@ -85,6 +85,7 @@ class GeneralDataResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->paginated(false)
             ->columns([
                 TextColumn::make('nombre_productor')
                     ->searchable()
