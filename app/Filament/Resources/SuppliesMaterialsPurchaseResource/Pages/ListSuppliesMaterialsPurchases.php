@@ -10,10 +10,10 @@ class ListSuppliesMaterialsPurchases extends ListRecords
 {
     protected static string $resource = SuppliesMaterialsPurchaseResource::class;
 
+    protected static ?string $navigationLabel = 'Compras de insumos y materiales';
+
     protected function getHeaderActions(): array
     {
-        return [
-            Actions\CreateAction::make(),
-        ];
+        return [];
     }
 }
