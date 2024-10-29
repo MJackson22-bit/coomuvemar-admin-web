@@ -1,13 +1,10 @@
 <?php
 
-namespace App\Filament\Resources\SuppliesMaterialsPurchaseResource\Pages;
+namespace App\Filament\Resources\FertilizerApplicationResource\Pages;
 
-use App\Filament\Resources\CocoaAreaActivitiesRegistryResource;
 use App\Filament\Resources\FertilizerApplicationResource;
-use App\Filament\Resources\SuppliesMaterialsPurchaseResource;
 use App\Models\BaseURL;
-use App\Models\RenewalRegistration;
-use App\Models\SuppliesMaterialsPurchase;
+use App\Models\FertilizerApplication;
 use Exception;
 use Filament\Actions;
 use Filament\Actions\Action;
@@ -15,16 +12,18 @@ use Filament\Resources\Pages\EditRecord;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
 
-class EditSuppliesMaterialsPurchase extends EditRecord
+class EditFertilizerApplication extends EditRecord
 {
-    protected static string $resource = SuppliesMaterialsPurchaseResource::class;
+    protected static string $resource = FertilizerApplicationResource::class;
 
-    protected static ?string $title = 'Editar Compra de insumos y materiales';
+    protected static ?string $navigationLabel = 'Editar Registro de aplicaciones de abono';
+
+    protected static ?string $title = 'Editar Registro de aplicaciones de abono';
 
 
     public function mount(int|string $record): void
     {
-        SuppliesMaterialsPurchase::setGeneralDataId(request('general_data_id'));
+        FertilizerApplication::setSuppliesId(request('supplies_id'));
         parent::mount($record);
     }
 
@@ -33,7 +32,7 @@ class EditSuppliesMaterialsPurchase extends EditRecord
      */
     protected function handleRecordUpdate(Model $record, array $data): Model
     {
-        $url = BaseURL::$BASE_URL . 'supplies-materials-purchase-record/update/' . $record['id'];
+        $url = BaseURL::$BASE_URL . 'fertilizer-application-record/update/' . $record['id'];
         $response = Http::put(
             url: $url,
             data: $data
@@ -49,7 +48,7 @@ class EditSuppliesMaterialsPurchase extends EditRecord
      */
     private function handleDeleteRecord(Model $record): bool
     {
-        $url = BaseURL::$BASE_URL . 'supplies-materials-purchase-record/destroy/' . $record['id'];
+        $url = BaseURL::$BASE_URL . 'fertilizer-application-record/destroy/' . $record['id'];
         $response = Http::delete($url)->json();
         if ($response['status'] === false) {
             throw new Exception("Failed to delete record: " . $response['message']);
@@ -77,19 +76,6 @@ class EditSuppliesMaterialsPurchase extends EditRecord
                 ->action(function (Model $record): bool {
                     return $this->handleDeleteRecord($record);
                 }),
-
-            Actions\Action::make('go_to_fertilizer_application')
-                ->label('Registro de aplicacion de abonos')
-                ->color('info')
-                ->action(function () {
-                    $this->redirect(
-                        url: FertilizerApplicationResource::getUrl(
-                            parameters: [
-                                'supplies_id' => $this->record['id']
-                            ]
-                        ),
-                    );
-                })
         ];
     }
 
