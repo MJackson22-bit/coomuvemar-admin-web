@@ -7,6 +7,7 @@ use App\Filament\Resources\FertilizerApplicationResource\RelationManagers;
 use App\Models\CocoaAreaActivitiesRegistry;
 use App\Models\FertilizerApplication;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -37,13 +38,22 @@ class FertilizerApplicationResource extends Resource
                     ->label('Nombre del fertilizante')
                     ->required(),
 
-                TextInput::make('lugar_aplicacion')
-                    ->label('Lugar de la aplicacion')
-                    ->required(),
+                Select::make('lugar_aplicacion')
+                    ->options([
+                        'Suelo' => 'Suelo',
+                        'Follaje' => 'Follaje',
+                    ])
+                    ->required()
+                    ->native(false),
 
-                TextInput::make('tipo_insumo')
+                Select::make('tipo_insumo')
                     ->label('Tipo de insumo')
-                    ->required(),
+                    ->required()
+                    ->options([
+                        'Quimico' => 'Quimico',
+                        'Organico' => 'Organico',
+                    ])
+                    ->native(false),
 
                 TextInput::make('procedencia_fertilizante')
                     ->label('Procedencia del fertilizante')
