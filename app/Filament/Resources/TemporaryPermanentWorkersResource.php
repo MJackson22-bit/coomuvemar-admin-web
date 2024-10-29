@@ -19,6 +19,8 @@ class TemporaryPermanentWorkersResource extends Resource
 
     protected static bool $shouldRegisterNavigation = false;
 
+    protected static ?string $label = 'Registros de trabajadores temporales y permanentes';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form

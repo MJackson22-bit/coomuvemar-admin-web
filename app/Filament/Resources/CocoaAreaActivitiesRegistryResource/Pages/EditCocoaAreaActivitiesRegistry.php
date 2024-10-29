@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Filament\Resources\TemporaryPermanentWorkersResource\Pages;
+namespace App\Filament\Resources\CocoaAreaActivitiesRegistryResource\Pages;
 
 use App\Filament\Resources\CocoaAreaActivitiesRegistryResource;
-use App\Filament\Resources\TemporaryPermanentWorkersResource;
 use App\Models\BaseURL;
-use App\Models\TemporaryPermanentWorkers;
+use App\Models\CocoaAreaActivitiesRegistry;
+use App\Models\RenewalRegistration;
 use Exception;
 use Filament\Actions;
 use Filament\Actions\Action;
@@ -13,15 +13,18 @@ use Filament\Resources\Pages\EditRecord;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
 
-class EditTemporaryPermanentWorkers extends EditRecord
+class EditCocoaAreaActivitiesRegistry extends EditRecord
 {
-    protected static string $resource = TemporaryPermanentWorkersResource::class;
+    protected static string $resource = CocoaAreaActivitiesRegistryResource::class;
 
-    protected static ?string $title = 'Editar Registro Trabajadores temporales y permanentes';
+    protected static ?string $navigationLabel = 'Editar Registro de Actividades Areas de Cacao';
+
+    protected static ?string $title = 'Editar Registro de Actividades Areas de Cacao';
+
 
     public function mount(int|string $record): void
     {
-        TemporaryPermanentWorkers::setGeneralDataId(request('general_data_id'));
+        CocoaAreaActivitiesRegistry::setRegistryTemporaryPermanentWorkersId(request('temporary_permanent_workers_id'));
         parent::mount($record);
     }
 
@@ -30,7 +33,7 @@ class EditTemporaryPermanentWorkers extends EditRecord
      */
     protected function handleRecordUpdate(Model $record, array $data): Model
     {
-        $url = BaseURL::$BASE_URL . 'registry-temporary-permanent-workers/update/' . $record['id'];
+        $url = BaseURL::$BASE_URL . 'cocoa-area-activities-registries/update/' . $record['id'];
         $response = Http::put(
             url: $url,
             data: $data
@@ -46,7 +49,7 @@ class EditTemporaryPermanentWorkers extends EditRecord
      */
     private function handleDeleteRecord(Model $record): bool
     {
-        $url = BaseURL::$BASE_URL . 'registry-temporary-permanent-workers/destroy/' . $record['id'];
+        $url = BaseURL::$BASE_URL . 'cocoa-area-activities-registries/destroy/' . $record['id'];
         $response = Http::delete($url)->json();
         if ($response['status'] === false) {
             throw new Exception("Failed to delete record: " . $response['message']);
@@ -74,18 +77,6 @@ class EditTemporaryPermanentWorkers extends EditRecord
                 ->action(function (Model $record): bool {
                     return $this->handleDeleteRecord($record);
                 }),
-            Actions\Action::make('go_to_cocoa_activities')
-                ->label('Registro de Actividades en las Areas de Cacao')
-                ->color('info')
-                ->action(function () {
-                    $this->redirect(
-                        url: CocoaAreaActivitiesRegistryResource::getUrl(
-                            parameters: [
-                                'temporary_permanent_workers_id' => $this->record['id']
-                            ]
-                        ),
-                    );
-                })
         ];
     }
 

@@ -1,19 +1,21 @@
 <?php
 
-namespace App\Filament\Resources\TemporaryPermanentWorkersResource\Pages;
+namespace App\Filament\Resources\CocoaAreaActivitiesRegistryResource\Pages;
 
-use App\Filament\Resources\TemporaryPermanentWorkersResource;
+use App\Filament\Resources\CocoaAreaActivitiesRegistryResource;
 use App\Models\BaseURL;
-use App\Models\TemporaryPermanentWorkers;
+use App\Models\CocoaAreaActivitiesRegistry;
 use Exception;
 use Filament\Actions\Action;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
 
-class CreateTemporaryPermanentWorkers extends CreateRecord
+class CreateCocoaAreaActivitiesRegistry extends CreateRecord
 {
-    protected static string $resource = TemporaryPermanentWorkersResource::class;
+    protected static string $resource = CocoaAreaActivitiesRegistryResource::class;
+
+    protected static ?string $navigationLabel = 'Crear Registro de Actividades Areas de Cacao';
 
     protected static ?string $title = "Crear Registro Trabajadores temporales y permanentes";
 
@@ -30,9 +32,9 @@ class CreateTemporaryPermanentWorkers extends CreateRecord
      */
     protected function handleRecordCreation(array $data): Model
     {
-        $generalDataId = explode('=', $this->previousUrl)[1];
-        $url = BaseURL::$BASE_URL . 'registry-temporary-permanent-workers/store/' . $generalDataId;
-        TemporaryPermanentWorkers::setGeneralDataId($generalDataId);
+        $temporary_permanent_workers_id = explode('=', $this->previousUrl)[1];
+        $url = BaseURL::$BASE_URL . 'cocoa-area-activities-registries/store/' . $temporary_permanent_workers_id;
+        CocoaAreaActivitiesRegistry::setRegistryTemporaryPermanentWorkersId($temporary_permanent_workers_id);
         $response = Http::post(
             url: $url,
             data: $data
@@ -40,7 +42,7 @@ class CreateTemporaryPermanentWorkers extends CreateRecord
         if ($response['status'] === false) {
             throw new Exception("Failed to create record: " . $response['message']);
         }
-        return new TemporaryPermanentWorkers(
+        return new CocoaAreaActivitiesRegistry(
             attributes: $response['data']
         );
     }
