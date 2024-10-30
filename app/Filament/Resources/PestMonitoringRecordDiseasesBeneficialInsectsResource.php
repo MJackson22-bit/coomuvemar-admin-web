@@ -6,6 +6,8 @@ use App\Filament\Resources\PestMonitoringRecordDiseasesBeneficialInsectsResource
 use App\Models\HarvestRegistrationCocoa;
 use App\Models\PestMonitoringRecordDiseasesBeneficialInsects;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Split;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -35,6 +37,38 @@ class PestMonitoringRecordDiseasesBeneficialInsectsResource extends Resource
                     ->displayFormat('y-m-d')
                     ->format('y-m-d')
                     ->required(),
+
+                Section::make('Muestro 1')
+                    ->columns([
+                        'sm' => 2,
+                    ])
+                    ->schema([
+                        TextInput::make('numero_plantas_afectadas_1')
+                            ->label('Numero de plantas afectadas')
+                            ->type('number')
+                            ->required(),
+
+                        TextInput::make('numero_mazorcas_afectadas_1')
+                            ->label('Numero de mazorcas afectadas')
+                            ->type('number')
+                            ->required(),
+                    ]),
+
+                Section::make('Muestro 2')
+                    ->columns([
+                        'sm' => 2,
+                    ])
+                    ->schema([
+                        TextInput::make('numero_plantas_afectadas_2')
+                            ->label('Numero de plantas afectadas')
+                            ->type('number')
+                            ->required(),
+
+                        TextInput::make('numero_mazorcas_afectadas_2')
+                            ->label('Numero de mazorcas afectadas')
+                            ->type('number')
+                            ->required(),
+                    ]),
             ]);
     }
 
@@ -42,6 +76,8 @@ class PestMonitoringRecordDiseasesBeneficialInsectsResource extends Resource
     {
         PestMonitoringRecordDiseasesBeneficialInsects::setGeneralDataId(request('general_data_id'));
         return $table
+            ->emptyStateDescription(description: "Aun no hay registros para este modulo")
+            ->emptyStateHeading(heading: "Sin informacion")
             ->paginated(false)
             ->headerActions([
                 Tables\Actions\CreateAction::make()

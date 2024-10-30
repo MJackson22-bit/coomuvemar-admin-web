@@ -73,6 +73,8 @@ class PesticideApplicationResource extends Resource
     {
         PesticideApplication::setSuppliesId(request('supplies_id'));
         return $table
+            ->emptyStateDescription(description: "Aun no hay registros para este modulo")
+            ->emptyStateHeading(heading: "Sin informacion")
             ->paginated(false)
             ->headerActions([
                 Tables\Actions\CreateAction::make()

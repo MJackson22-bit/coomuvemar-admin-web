@@ -68,7 +68,7 @@ class Plantation extends Model
                 );
             });
         } catch (Throwable $exception) {
-            throw new Exception('Something went wrong: ' . $exception->getMessage());
+            return [];
         }
     }
 }

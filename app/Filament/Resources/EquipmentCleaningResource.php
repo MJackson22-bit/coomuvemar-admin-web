@@ -50,6 +50,8 @@ class EquipmentCleaningResource extends Resource
     {
         EquipmentCleaning::setGeneralDataId(request('general_data_id'));
         return $table
+            ->emptyStateDescription(description: "Aun no hay registros para este modulo")
+            ->emptyStateHeading(heading: "Sin informacion")
             ->paginated(false)
             ->headerActions([
                 Tables\Actions\CreateAction::make()

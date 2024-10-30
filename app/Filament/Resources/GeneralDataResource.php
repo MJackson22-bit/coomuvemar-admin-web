@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\GeneralDataResource\Pages;
 use App\Models\GeneralData;
+use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -79,12 +80,17 @@ class GeneralDataResource extends Resource
                 TextInput::make('variedades_cacao')
                     ->label('Variedades de Cacao')
                     ->required(),
+
+                Checkbox::make('es_certificado')
+                    ->label('Certificado')
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+            ->emptyStateDescription(description: "Aun no hay registros para este modulo")
+            ->emptyStateHeading(heading: "Sin informacion")
             ->paginated(false)
             ->columns([
                 TextColumn::make('nombre_productor')
