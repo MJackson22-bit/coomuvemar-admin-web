@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use Filament\Forms\Components\DateTimePicker;
+use App\Http\Responses\LoginResponse;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -12,7 +12,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(
+            \Filament\Http\Responses\Auth\LoginResponse::class,
+            LoginResponse::class
+        );
     }
 
     /**
