@@ -5,12 +5,15 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\GeneralDataResource\Pages;
 use App\Models\GeneralData;
 use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\HtmlString;
 
 class GeneralDataResource extends Resource
 {
@@ -82,7 +85,18 @@ class GeneralDataResource extends Resource
                     ->required(),
 
                 Checkbox::make('es_certificado')
-                    ->label('Certificado')
+                    ->label('Certificado'),
+
+                FileUpload::make('bosquejo_finca')
+                    ->label('Seleccione el bosquejo de la finca')
+                    ->disk('public')
+                    ->openable()
+                    ->image(),
+
+                Placeholder::make('Bosquejo actual de la finca')
+                    ->content(function ($record): HtmlString {
+                        return new HtmlString("<img src= '" . $record->bosquejo_finca. "')>");
+                    })
             ]);
     }
 

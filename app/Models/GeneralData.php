@@ -32,7 +32,8 @@ class GeneralData extends Model
         'produccion',
         'desarrollo',
         'variedades_cacao',
-        'es_certificado'
+        'es_certificado',
+        'bosquejo_finca'
     ];
 
     public function getRows(): array
@@ -59,7 +60,8 @@ class GeneralData extends Model
                         'produccion',
                         'desarrollo',
                         'variedades_cacao',
-                        'es_certificado'
+                        'es_certificado',
+                        'bosquejo_finca'
                     ]
                 );
             });

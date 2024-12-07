@@ -1,6 +1,6 @@
 <x-filament-widgets::widget>
     <x-filament::link href="{{ $action }}" class="w-full min-h-24 bg-neutral-900 rounded-lg" size="xs" color="gray">
-        <div class="flex flex-row items-center">
+        <div class="flex flex-row items-start">
             <div>
                 <x-filament::icon
                     icon="heroicon-o-rectangle-stack"

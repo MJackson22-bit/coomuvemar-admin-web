@@ -30,7 +30,7 @@ class CocoaAreaActivitiesRegistry extends Model
         'pago_mensual',
         'fecha_pago',
         'firma',
-        'registry_temporary_permanent_workers_id',
+        'general_data_id',
         'created_at',
         'updated_at',
     ];
@@ -50,8 +50,8 @@ class CocoaAreaActivitiesRegistry extends Model
 
             if (is_array($data) && isset($data[0]['snapshot'])) {
                 $snapshotData = json_decode($data[0]['snapshot'], true);
-                if (is_array($snapshotData) && isset($snapshotData['data']['data'][0]['registry_temporary_permanent_workers_id'])) {
-                    $registry_temporary_permanent_workers_id = $snapshotData['data']['data'][0]['registry_temporary_permanent_workers_id'];
+                if (is_array($snapshotData) && isset($snapshotData['data']['data'][0]['general_data_id'])) {
+                    $registry_temporary_permanent_workers_id = $snapshotData['data']['data'][0]['general_data_id'];
                     self::$registry_temporary_permanent_workers_id = $registry_temporary_permanent_workers_id;
                 }
             }
@@ -71,7 +71,6 @@ class CocoaAreaActivitiesRegistry extends Model
                         'pago_mensual',
                         'fecha_pago',
                         'firma',
-                        'registry_temporary_permanent_workers_id',
                         'general_data_id',
                         'created_at',
                         'updated_at',

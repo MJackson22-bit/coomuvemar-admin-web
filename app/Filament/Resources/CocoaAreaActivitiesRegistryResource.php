@@ -68,7 +68,7 @@ class CocoaAreaActivitiesRegistryResource extends Resource
 
     public static function table(Table $table): Table
     {
-        CocoaAreaActivitiesRegistry::setRegistryTemporaryPermanentWorkersId(request('temporary_permanent_workers_id'));
+        CocoaAreaActivitiesRegistry::setRegistryTemporaryPermanentWorkersId(request('general_data_id'));
         return $table
             ->emptyStateDescription(description: "Aun no hay registros para este modulo")
             ->emptyStateHeading(heading: "Sin informacion")
@@ -78,7 +78,7 @@ class CocoaAreaActivitiesRegistryResource extends Resource
                     ->url(fn() => static::getUrl(
                         'create',
                         [
-                            'temporary_permanent_workers_id' => request('temporary_permanent_workers_id')
+                            'general_data_id' => request('general_data_id')
                         ]
                     ))
                     ->label('Crear Registro'),
@@ -137,7 +137,7 @@ class CocoaAreaActivitiesRegistryResource extends Resource
                             'edit',
                             [
                                 'record' => $record['id'],
-                                'temporary_permanent_workers_id' => request('temporary_permanent_workers_id')
+                                'general_data_id' => request('general_data_id')
                             ]
                         );
                     })
@@ -161,8 +161,8 @@ class CocoaAreaActivitiesRegistryResource extends Resource
     {
         return [
             'index' => Pages\ListCocoaAreaActivitiesRegistries::route('/'),
-            'create' => Pages\CreateCocoaAreaActivitiesRegistry::route('/create/{temporary_permanent_workers_id}'),
-            'edit' => Pages\EditCocoaAreaActivitiesRegistry::route('/{record}/edit/{temporary_permanent_workers_id}'),
+            'create' => Pages\CreateCocoaAreaActivitiesRegistry::route('/create/{general_data_id}'),
+            'edit' => Pages\EditCocoaAreaActivitiesRegistry::route('/{record}/edit/{general_data_id}'),
         ];
     }
 }

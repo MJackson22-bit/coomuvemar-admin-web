@@ -31,7 +31,8 @@ class CreateGeneralData extends CreateRecord
      */
     protected function handleRecordCreation(array $data): Model
     {
-        $url = BaseURL::$BASE_URL . 'general-data/store/1';
+        $userId = auth()->user()->getAuthIdentifier();
+        $url = BaseURL::$BASE_URL . 'general-data/store/' . $userId;
         $response = Http::post(
             url: $url,
             data: $data

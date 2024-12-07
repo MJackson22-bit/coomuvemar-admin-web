@@ -3,7 +3,10 @@
 namespace App\Providers;
 
 use App\Http\Responses\LoginResponse;
+use Filament\Support\Facades\FilamentView;
+use Filament\View\PanelsRenderHook;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +26,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        FilamentView::registerRenderHook(
+            PanelsRenderHook::AUTH_LOGIN_FORM_BEFORE,
+            fn() : View => view()->make('filament.pages.auth.header-login')
+        );
+
+        FilamentView::registerRenderHook(
+            PanelsRenderHook::AUTH_REGISTER_FORM_BEFORE,
+            fn() : View => view()->make('filament.pages.auth.header-login')
+        );
     }
 }

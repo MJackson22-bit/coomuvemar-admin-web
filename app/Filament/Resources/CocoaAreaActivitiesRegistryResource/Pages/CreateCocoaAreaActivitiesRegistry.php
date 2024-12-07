@@ -17,7 +17,7 @@ class CreateCocoaAreaActivitiesRegistry extends CreateRecord
 
     protected static ?string $navigationLabel = 'Crear Registro de Actividades Areas de Cacao';
 
-    protected static ?string $title = "Crear Registro Trabajadores temporales y permanentes";
+    protected static ?string $title = "Crear Registro de Actividades Areas de Cacao";
 
     protected static bool $canCreateAnother = false;
 
@@ -32,9 +32,9 @@ class CreateCocoaAreaActivitiesRegistry extends CreateRecord
      */
     protected function handleRecordCreation(array $data): Model
     {
-        $temporary_permanent_workers_id = explode('=', $this->previousUrl)[1];
-        $url = BaseURL::$BASE_URL . 'cocoa-area-activities-registries/store/' . $temporary_permanent_workers_id;
-        CocoaAreaActivitiesRegistry::setRegistryTemporaryPermanentWorkersId($temporary_permanent_workers_id);
+        $generalDataId = explode('=', $this->previousUrl)[1];
+        $url = BaseURL::$BASE_URL . 'cocoa-area-activities-registries/store/' . $generalDataId;
+        CocoaAreaActivitiesRegistry::setRegistryTemporaryPermanentWorkersId($generalDataId);
         $response = Http::post(
             url: $url,
             data: $data
