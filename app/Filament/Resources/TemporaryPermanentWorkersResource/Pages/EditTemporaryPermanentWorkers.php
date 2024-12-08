@@ -73,18 +73,6 @@ class EditTemporaryPermanentWorkers extends EditRecord
                 ->modalDescription('¿Seguro que desea eliminar el registro?')
                 ->action(function (Model $record): bool {
                     return $this->handleDeleteRecord($record);
-                }),
-            Actions\Action::make('go_to_cocoa_activities')
-                ->label('Registro de Actividades en las Areas de Cacao')
-                ->color('info')
-                ->action(function () {
-                    $this->redirect(
-                        url: CocoaAreaActivitiesRegistryResource::getUrl(
-                            parameters: [
-                                'temporary_permanent_workers_id' => $this->record['id']
-                            ]
-                        ),
-                    );
                 })
         ];
     }

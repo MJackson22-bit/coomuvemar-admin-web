@@ -25,7 +25,7 @@ class FertilizerApplication extends Model
         'dosis_planta',
         'dosis_manzana',
         'veces_aplicado_anio',
-        'supplies_materials_purchase_records_id',
+        'general_data_id',
         'created_at',
         'updated_at',
     ];
@@ -47,8 +47,8 @@ class FertilizerApplication extends Model
 
             if (is_array($data) && isset($data[0]['snapshot'])) {
                 $snapshotData = json_decode($data[0]['snapshot'], true);
-                if (is_array($snapshotData) && isset($snapshotData['data']['data'][0]['supplies_materials_purchase_records_id'])) {
-                    $suppliesMaterialsPurchaseRecordsId = $snapshotData['data']['data'][0]['supplies_materials_purchase_records_id'];
+                if (is_array($snapshotData) && isset($snapshotData['data']['data'][0]['general_data_id'])) {
+                    $suppliesMaterialsPurchaseRecordsId = $snapshotData['data']['data'][0]['general_data_id'];
                     self::$suppliesId = $suppliesMaterialsPurchaseRecordsId;
                 }
             }
@@ -65,7 +65,7 @@ class FertilizerApplication extends Model
                         'dosis_planta',
                         'dosis_manzana',
                         'veces_aplicado_anio',
-                        'supplies_materials_purchase_records_id',
+                        'general_data_id',
                         'created_at',
                         'updated_at',
                     ]

@@ -75,7 +75,7 @@ class FertilizerApplicationResource extends Resource
 
     public static function table(Table $table): Table
     {
-        FertilizerApplication::setSuppliesId(request('supplies_id'));
+        FertilizerApplication::setSuppliesId(request('general_data_id'));
         return $table
             ->emptyStateDescription(description: "Aun no hay registros para este modulo")
             ->emptyStateHeading(heading: "Sin informacion")
@@ -85,7 +85,7 @@ class FertilizerApplicationResource extends Resource
                     ->url(fn() => static::getUrl(
                         'create',
                         [
-                            'supplies_id' => request('supplies_id')
+                            'general_data_id' => request('general_data_id')
                         ]
                     ))
                     ->label('Crear Registro'),
@@ -137,7 +137,7 @@ class FertilizerApplicationResource extends Resource
                             'edit',
                             [
                                 'record' => $record['id'],
-                                'supplies_id' => request('supplies_id')
+                                'general_data_id' => request('general_data_id')
                             ]
                         );
                     })
@@ -161,8 +161,8 @@ class FertilizerApplicationResource extends Resource
     {
         return [
             'index' => Pages\ListFertilizerApplications::route('/'),
-            'create' => Pages\CreateFertilizerApplication::route('/create/{supplies_id}'),
-            'edit' => Pages\EditFertilizerApplication::route('/{record}/edit/{supplies_id}'),
+            'create' => Pages\CreateFertilizerApplication::route('/create/{general_data_id}'),
+            'edit' => Pages\EditFertilizerApplication::route('/{record}/edit/{general_data_id}'),
         ];
     }
 }

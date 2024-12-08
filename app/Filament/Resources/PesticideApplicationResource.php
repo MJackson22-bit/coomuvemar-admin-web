@@ -71,7 +71,7 @@ class PesticideApplicationResource extends Resource
 
     public static function table(Table $table): Table
     {
-        PesticideApplication::setSuppliesId(request('supplies_id'));
+        PesticideApplication::setSuppliesId(request('general_data_id'));
         return $table
             ->emptyStateDescription(description: "Aun no hay registros para este modulo")
             ->emptyStateHeading(heading: "Sin informacion")
@@ -81,7 +81,7 @@ class PesticideApplicationResource extends Resource
                     ->url(fn() => static::getUrl(
                         'create',
                         [
-                            'supplies_id' => request('supplies_id')
+                            'general_data_id' => request('general_data_id')
                         ]
                     ))
                     ->label('Crear Registro'),
@@ -144,7 +144,7 @@ class PesticideApplicationResource extends Resource
                             'edit',
                             [
                                 'record' => $record['id'],
-                                'supplies_id' => request('supplies_id')
+                                'general_data_id' => request('general_data_id')
                             ]
                         );
                     })
@@ -168,8 +168,8 @@ class PesticideApplicationResource extends Resource
     {
         return [
             'index' => Pages\ListPesticideApplications::route('/'),
-            'create' => Pages\CreatePesticideApplication::route('/create/{supplies_id}'),
-            'edit' => Pages\EditPesticideApplication::route('/{record}/edit/{supplies_id}'),
+            'create' => Pages\CreatePesticideApplication::route('/create/{general_data_id}'),
+            'edit' => Pages\EditPesticideApplication::route('/{record}/edit/{general_data_id}'),
         ];
     }
 }

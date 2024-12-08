@@ -27,7 +27,7 @@ class PesticideApplication extends Model
         'lugar_cultivo_producto_aplicado',
         'mz_area_producto_aplicado',
         'litros_total_volumen_aplicado',
-        'supplies_materials_purchase_records_id',
+        'general_data_id',
         'created_at',
         'updated_at',
     ];
@@ -49,8 +49,8 @@ class PesticideApplication extends Model
 
             if (is_array($data) && isset($data[0]['snapshot'])) {
                 $snapshotData = json_decode($data[0]['snapshot'], true);
-                if (is_array($snapshotData) && isset($snapshotData['data']['data'][0]['supplies_materials_purchase_records_id'])) {
-                    $suppliesMaterialsPurchaseRecordsId = $snapshotData['data']['data'][0]['supplies_materials_purchase_records_id'];
+                if (is_array($snapshotData) && isset($snapshotData['data']['data'][0]['general_data_id'])) {
+                    $suppliesMaterialsPurchaseRecordsId = $snapshotData['data']['data'][0]['general_data_id'];
                     self::$suppliesId = $suppliesMaterialsPurchaseRecordsId;
                 }
             }
@@ -69,7 +69,7 @@ class PesticideApplication extends Model
                         'lugar_cultivo_producto_aplicado',
                         'mz_area_producto_aplicado',
                         'litros_total_volumen_aplicado',
-                        'supplies_materials_purchase_records_id',
+                        'general_data_id',
                         'created_at',
                         'updated_at',
                     ]

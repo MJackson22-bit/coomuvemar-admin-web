@@ -78,32 +78,6 @@ class EditSuppliesMaterialsPurchase extends EditRecord
                 ->action(function (Model $record): bool {
                     return $this->handleDeleteRecord($record);
                 }),
-
-            Actions\Action::make('go_to_fertilizer_application')
-                ->label('Registro de aplicacion de abonos')
-                ->color('info')
-                ->action(function () {
-                    $this->redirect(
-                        url: FertilizerApplicationResource::getUrl(
-                            parameters: [
-                                'supplies_id' => $this->record['id']
-                            ]
-                        ),
-                    );
-                }),
-
-            Actions\Action::make('go_to_pesticide_application')
-                ->label('Registro de aplicacion de plaguicidas')
-                ->color('info')
-                ->action(function () {
-                    $this->redirect(
-                        url: PesticideApplicationResource::getUrl(
-                            parameters: [
-                                'supplies_id' => $this->record['id']
-                            ]
-                        ),
-                    );
-                })
         ];
     }
 

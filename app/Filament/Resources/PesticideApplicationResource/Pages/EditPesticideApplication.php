@@ -24,7 +24,7 @@ class EditPesticideApplication extends EditRecord
 
     public function mount(int|string $record): void
     {
-        PesticideApplication::setSuppliesId(request('supplies_id'));
+        PesticideApplication::setSuppliesId(request('general_data_id'));
         parent::mount($record);
     }
 

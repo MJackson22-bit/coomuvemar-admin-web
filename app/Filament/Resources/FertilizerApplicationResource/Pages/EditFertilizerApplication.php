@@ -23,7 +23,7 @@ class EditFertilizerApplication extends EditRecord
 
     public function mount(int|string $record): void
     {
-        FertilizerApplication::setSuppliesId(request('supplies_id'));
+        FertilizerApplication::setSuppliesId(request('general_data_id'));
         parent::mount($record);
     }
 

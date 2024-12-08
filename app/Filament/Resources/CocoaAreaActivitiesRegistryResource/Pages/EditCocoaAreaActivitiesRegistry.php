@@ -24,7 +24,7 @@ class EditCocoaAreaActivitiesRegistry extends EditRecord
 
     public function mount(int|string $record): void
     {
-        CocoaAreaActivitiesRegistry::setRegistryTemporaryPermanentWorkersId(request('temporary_permanent_workers_id'));
+        CocoaAreaActivitiesRegistry::setRegistryTemporaryPermanentWorkersId(request('general_data_id'));
         parent::mount($record);
     }
 

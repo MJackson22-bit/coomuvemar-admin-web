@@ -22,7 +22,10 @@ class PestMonitoringRecordDiseasesBeneficialInsectsResource extends Resource
 
     protected static bool $shouldRegisterNavigation = false;
 
+    protected static ?string $label = 'Registro de Monitoreo de Plagas, Enfermedades e Insectos Benéficos';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
 
     public static function form(Form $form): Form
     {
