@@ -95,7 +95,13 @@ class GeneralDataResource extends Resource
 
                 Placeholder::make('Bosquejo actual de la finca')
                     ->content(function ($record): HtmlString {
-                        return new HtmlString("<img src= '" . $record->bosquejo_finca. "')>");
+                        $imageUrl = $record->bosquejo_finca ?? "";
+                        if (strlen($imageUrl) > 0) {
+                            return new HtmlString("<img src= '" . $imageUrl . "')");
+                        } else {
+                            return new HtmlString("Sin imagen");
+                        }
+
                     })
             ]);
     }
