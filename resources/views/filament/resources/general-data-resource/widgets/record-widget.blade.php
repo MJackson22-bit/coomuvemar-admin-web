@@ -1,14 +1,27 @@
 <x-filament-widgets::widget>
-    <x-filament::link href="{{ $action }}" class="w-full min-h-24 bg-neutral-900 rounded-lg" size="xs" color="gray">
-        <div class="flex flex-row items-start">
-            <div>
+    <x-filament::link
+        href="{{ $action }}"
+        class="w-full p-4 bg-gradient-to-r from-green-600 via-green-500 to-green-400 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out"
+        size="xs"
+        color="gray"
+    >
+        <div class="flex items-center gap-4">
+            <!-- Icon Section -->
+            <div class="bg-white bg-opacity-20 rounded-full p-3">
                 <x-filament::icon
                     icon="heroicon-o-rectangle-stack"
-                    class="h-6 w-6 text-gray-500 dark:text-gray-400"
+                    class="h-8 w-8 text-white"
                 />
             </div>
-            <div class="ms-2">
-                <h2 class="text-xl font-bold">{{ $title }}</h2>
+
+            <!-- Content Section -->
+            <div class="flex flex-col">
+                <h2 class="text-lg font-semibold text-white">
+                    {{ $title }}
+                </h2>
+                <p class="text-sm text-white text-opacity-80">
+                    {{ $description ?? 'Click para explorar mas detalles.' }}
+                </p>
             </div>
         </div>
     </x-filament::link>
